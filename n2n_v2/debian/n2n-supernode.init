@@ -41,6 +41,10 @@ SCRIPTNAME=/etc/init.d/$NAME
 # Read configuration variable file if it is present
 [ -r /etc/default/$NAME ] && . /etc/default/$NAME
 
+# Set defaults
+if [ -z $N2N_SN_PORT ]; then N2N_SN_PORT=7654; fi
+DAEMON_ARGS="$DAEMON_ARGS -l $N2N_SN_PORT"
+
 # Load the VERBOSE setting and other rcS variables
 . /lib/init/vars.sh
 
