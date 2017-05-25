@@ -53,7 +53,7 @@ DAEMON_ARGS="$DAEMON_ARGS  -l $N2N_SN_HOST:$N2N_SN_PORT"
 if [ -z ${N2N_MAC_ADDR+x} ];
 	N2N_MAC_ADDR=`getent ethers $HOSTNAME | awk '{print  $1}'`
 if ! [ -z ${N2N_MAC_ADDR+x} ]; then 
-DAEMON_ARGS="$DAEMON_ARGS -m $N2N_MAC_ADDR"; 
+	1DAEMON_ARGS="$DAEMON_ARGS -m $N2N_MAC_ADDR"; 
 fi
 if ! [ -z $N2N_COMMUNITY ]; then DAEMON_ARGS="$DAEMON_ARGS -c $N2N_COMMUNITY"; fi
 
@@ -84,8 +84,7 @@ do_start()
 		|| return 1
 	export N2N_KEY
 	start-stop-daemon --start --quiet --user nobody --exec $DAEMON -- \
-		-c $N2N_COMMUNITY -u $(id -u nobody) -g $(id -g nobody) \
-		$DAEMON_ARGS \
+		-u $(id -u nobody) -g $(id -g nobody) $DAEMON_ARGS \
 		|| return 2
 }
 

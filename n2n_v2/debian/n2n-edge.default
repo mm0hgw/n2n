@@ -15,6 +15,7 @@ N2N_KEY="MySecretCode"
 # By default, we use the result of 'getent hosts `uname -n`'
 # edit /etc/hosts to direct this call as desired, configure
 # LDAP or edit here.
+# https://tools.ietf.org/html/rfc1918 <- this is your friend.
 #N2N_IP=""
 
 # -r Enable packet forwarding
