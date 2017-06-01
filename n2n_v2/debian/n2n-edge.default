@@ -16,6 +16,9 @@ N2N_KEY="test"
 #HOSTNAME=`uname -n`
 
 # IP & MAC addresses settings
+# ( set via nss which means where 
+#   '/etc/nsswitch.conf' says $HOSTNAME can be found )
+# ( MAC not required )
 #N2N_IP_ADDR=`getent hosts $HOSTNAME | awk '{print  $1}'`
 #N2N_IP="static:$N2N_IP_ADDR"
 #N2N_MAC=`getent ethers $HOSTNAME | awk '{print  $1}'`
