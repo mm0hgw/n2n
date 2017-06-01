@@ -21,6 +21,7 @@ N2N_KEY="test"
 # ( MAC not required )
 #N2N_IP_ADDR=`getent hosts $HOSTNAME | awk '{print  $1}'`
 #N2N_IP="static:$N2N_IP_ADDR"
+#N2N_NETMASK="255.255.255.0"
 #N2N_MAC=`getent ethers $HOSTNAME | awk '{print  $1}'`
 
 # -r Enable packet forwarding

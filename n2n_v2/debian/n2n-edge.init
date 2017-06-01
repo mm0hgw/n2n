@@ -66,6 +66,11 @@ if [ -z $N2N_IP ]; then
 	N2N_IP="dhcp:0.0.0.0"
 fi	
 DAEMON_ARGS="$DAEMON_ARGS -a $N2N_IP";
+if [ -z $N2N_NETMASK ]; then
+	N2N_NETMASK="255.255.255.0"
+fi	
+DAEMON_ARGS="$DAEMON_ARGS -s $N2N_NETMASK";
+
 if [ -z ${N2N_MAC+x} ]; then
 	N2N_MAC=`getent ethers $HOSTNAME | awk '{print  $1}'`; 
 fi
