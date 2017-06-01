@@ -40,8 +40,14 @@ SCRIPTNAME=/etc/init.d/$NAME
 # Read configuration variable file if it is present
 [ -r /etc/default/$NAME ] && . /etc/default/$NAME
 
+# Check config
+if [ -z "$N2N_EDGE_CONFIG_DONE" ]
+then
+	echo "Warning: n2n-edge not configured, edit config file in /etc/default/$NAME." 1>&2
+        exit 0
+fi
+
 # Load default values
-<<<<<<< HEAD
 HOSTNAME=`uname -n`
 if [ -z ${N2N_SN_HOST+x} ]; then N2N_SN_HOST=localhost; fi
 if [ -z ${N2N_SN_PORT+x} ]; then N2N_SN_PORT=7654; fi
@@ -57,19 +63,6 @@ if ! [ -z ${N2N_MAC_ADDR+x} ]; then
 	1DAEMON_ARGS="$DAEMON_ARGS -m $N2N_MAC_ADDR"; 
 fi
 if ! [ -z $N2N_COMMUNITY ]; then DAEMON_ARGS="$DAEMON_ARGS -c $N2N_COMMUNITY"; fi
-=======
-if [ -z ${N2N_SN_HOST+x} ]; then N2N_SN_HOST=localhost; fi
-if [ -z ${N2N_SN_PORT+x} ]; then N2N_SN_PORT=7654; fi
-DAEMON_ARGS="$DAEMON_ARGS  -l $N2N_SN_HOST:$N2N_SN_PORT"
- if ! [ -z $N2N_MAC_ADDR ]; then DAEMON_ARGS="$DAEMON_ARGS -m $N2N_MAC_ADDR"; fi
->>>>>>> branch 'master' of git@github.com:mm0hgw/n2n
-
-# Check config
-if [ -z "$N2N_EDGE_CONFIG_DONE" ]
-then
-	echo "Warning: n2n-edge not configured, edit config file in /etc/default/$NAME." 1>&2
-        exit 0
-fi
 
 # Load the VERBOSE setting and other rcS variables
 . /lib/init/vars.sh
@@ -91,12 +84,8 @@ do_start()
 		|| return 1
 	export N2N_KEY
 	start-stop-daemon --start --quiet --user nobody --exec $DAEMON -- \
-<<<<<<< HEAD
-		-u $(id -u nobody) -g $(id -g nobody) $DAEMON_ARGS \
-=======
 		-a $N2N_IP -c $N2N_COMMUNITY -u $(id -u nobody) -g $(id -g nobody) \
 		$DAEMON_ARGS \
->>>>>>> branch 'master' of git@github.com:mm0hgw/n2n
 		|| return 2
 }
 
