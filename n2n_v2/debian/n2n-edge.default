@@ -2,21 +2,36 @@
 
 # Sets the n2n community name. All edges within the same community appear on
 # the same LAN (layer 2 network segment). Community name is 16 bytes in length.
-N2N_COMMUNITY="MyCommunityName"
+N2N_COMMUNITY="test"
 
 # Sets the twofish encryption key from ASCII text. All edges communicating must
 # use the same key and community name.
-N2N_KEY="MySecretCode"
+N2N_KEY="test"
 
 # Sets the n2n supernode IP address to register to.
 #N2N_SN_HOST=localhost
 #N2N_SN_PORT=7654
 
+<<<<<<< HEAD
 # By default, we use the result of 'getent hosts `uname -n`'
 # edit /etc/hosts to direct this call as desired, configure
 # LDAP or edit here.
 # https://tools.ietf.org/html/rfc1918 <- this is your friend.
 #N2N_IP=""
+=======
+# We use 'getent' to pull the host IP/ethernet address from the environment. 
+# The hostname is pointed to an address in the 127.0.0.0 block by default. 
+# Very Bad Things can happen if the hostname is not resolvable to an IP 
+# address, however, this isn't an issue if we always run the n2n edge daemon.
+# It does mean that the IP/ethernet addresses are not set here but by the nss 
+# system, as available at boot time which probably means /etc/hosts and 
+# /etc/ethers depending upon your setup
+HOSTNAME=`uname -n`
+N2N_IP_ADDR=`getent hosts $HOSTNAME | awk '{print  $1}'`
+N2N_IP="static:$N2N_IP_ADDR"
+N2N_MAC_ADDR=`getent ethers $HOSTNAME | awk '{print  $1}'`
+
+>>>>>>> branch 'master' of git@github.com:mm0hgw/n2n
 
 # -r Enable packet forwarding
 # -b Periodically resolve supernode IP (resolution often fails at boot-time)
