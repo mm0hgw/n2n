@@ -51,6 +51,7 @@ fi
 if [ -z $HOSTNAME ]; then 
 	HOSTNAME=`uname -n`
 fi
+
 if [ -z ${N2N_SN_HOST+x} ]; then 
 	N2N_SN_HOST=localhost; 
 fi
@@ -58,6 +59,7 @@ if [ -z ${N2N_SN_PORT+x} ]; then
 	N2N_SN_PORT=7654; 
 fi
 DAEMON_ARGS="$DAEMON_ARGS  -l $N2N_SN_HOST:$N2N_SN_PORT"
+
 if [ -z ${N2N_IP+x} ]; then 
 	N2N_IP_ADDR=`getent hosts $HOSTNAME | awk '{print  $1}'`
 	N2N_IP="static:$N2N_IP_ADDR"
@@ -65,17 +67,18 @@ fi
 if [ -z $N2N_IP ]; then
 	N2N_IP="dhcp:0.0.0.0"
 fi	
-DAEMON_ARGS="$DAEMON_ARGS -a $N2N_IP";
+DAEMON_ARGS="$DAEMON_ARGS -a $N2N_IP"
+
 if [ -z $N2N_NETMASK ]; then
 	N2N_NETMASK="255.255.255.0"
 fi	
-DAEMON_ARGS="$DAEMON_ARGS -s $N2N_NETMASK";
+DAEMON_ARGS="$DAEMON_ARGS -s $N2N_NETMASK"
 
 if [ -z ${N2N_MAC+x} ]; then
-	N2N_MAC=`getent ethers $HOSTNAME | awk '{print  $1}'`; 
+	N2N_MAC=`getent ethers $HOSTNAME | awk '{print  $1}'`
 fi
 if ! [ -z $N2N_MAC ]; then 
-	DAEMON_ARGS="$DAEMON_ARGS -m $N2N_MAC"; 
+	DAEMON_ARGS="$DAEMON_ARGS -m $N2N_MAC"
 fi
 DAEMON_ARGS="$DAEMON_ARGS -c $N2N_COMMUNITY"
 
