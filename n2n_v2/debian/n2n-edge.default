@@ -9,8 +9,8 @@ N2N_COMMUNITY="test"
 N2N_KEY="test"
 
 # Sets the n2n supernode IP address to register to.
-#N2N_SN_HOST=localhost
-#N2N_SN_PORT=7654
+#N2N_SN_HOST="localhost"
+#N2N_SN_PORT="7654"
 
 # Hostname supplied to 'getent' to look up configuration options
 #HOSTNAME=`uname -n`

@@ -11,6 +11,7 @@
 
 # Init script for n2n edge node
 # Copyright (C) 2010  Kim Hansen <kim@i9.dk>
+# Refactor (C) 2017 Dale MM0HGW <mm0hgw@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
